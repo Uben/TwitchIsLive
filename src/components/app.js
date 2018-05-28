@@ -6,8 +6,10 @@ import SearchResults from './search_results.js';
 export default class App extends Component {
   render() {
     return (
-      <SearchBar />
-      <SearchResults />
+    	<div id="search" className="search-sidebar">
+	      <SearchBar />
+	      <SearchResults />
+	    </div>
     );
   }
 }

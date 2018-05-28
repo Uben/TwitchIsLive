@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { user_search, user_input_change } from '../actions/index';
+import { channel_search, form_input_change } from '../actions/index';
 
 
 class SearchBar extends Component {
@@ -17,19 +17,19 @@ class SearchBar extends Component {
 	handleFormSubmit(event) { event.preventDefault(); } // Prevents the default Browser form submission behavior
 
 	handleInputChange(event) {
-		this.props.user_input_change(event.target.value); // update the 'search_value' in the redux state
+		this.props.form_input_change(event.target.value); // update the 'search_value' in the redux state
 	}
 
 	handleButtonClick(event){
 		event.preventDefault(); // Prevents the default Browser form submission behavior
-		this.props.user_search(this.props.search_value); // Dispatch the action 'user_search/FORM_INPUT_CHANGE' w/ value in the input 
-		this.props.user_input_change(null); // empty 'search_value' in the redux state after submission
+		this.props.channel_search(this.props.search_value); // Dispatch the action 'user_search/FORM_INPUT_CHANGE' w/ value in the input 
+		this.props.form_input_change(null); // empty 'search_value' in the redux state after submission
 	}
 
 
 	render () {
 		return (
-			<form id="twitchSearch" className="form-search" onSubmit={this.handleFormSubmit}>
+			<form id="search-form" className="search-form" onSubmit={this.handleFormSubmit}>
 				<input
 					type="text"
 					placeholder="Type a streamers username!"
@@ -58,7 +58,7 @@ function mapDispatchToProps(dispatch) {
 	
 	// in user_search: user_search, the key is what you type to access the action
 	// the value is a refrerence to a JS function to which we pass the todo object
-	return bindActionCreators({ user_search: user_search, user_input_change: user_input_change }, dispatch);
+	return bindActionCreators({ channel_search: channel_search, form_input_change: form_input_change }, dispatch);
 }
 
 
