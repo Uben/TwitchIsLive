@@ -23,7 +23,7 @@ class SearchBar extends Component {
 	handleButtonClick(event){
 		event.preventDefault(); // Prevents the default Browser form submission behavior
 		this.props.channel_search(this.props.search_value); // Dispatch the action 'user_search/FORM_INPUT_CHANGE' w/ value in the input 
-		this.props.form_input_change(null); // empty 'search_value' in the redux state after submission
+		// this.props.form_input_change(null); // empty 'search_value' in the redux state after submission
 	}
 
 
@@ -32,7 +32,7 @@ class SearchBar extends Component {
 			<form id="search-form" className="search-form" onSubmit={this.handleFormSubmit}>
 				<input
 					type="text"
-					placeholder="Type a streamers username!"
+					placeholder="Enter a username"
 					value={this.props.search_value != null ? this.props.search_value : ''} // value shouldn't be null
 					onChange={this.handleInputChange}
 				/>

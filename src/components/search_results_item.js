@@ -8,14 +8,13 @@ class SearchResultsItem extends Component {
 	render() {
 		return (
 			<li className="search-results-item" key={this.props.key}>
-				<div className="item-header">
-					<img className="header-image" src={this.props.data.logo} />
-					<p className="header-name"> {this.props.data.display_name} </p>
+				<div className="item-image-container">
+					<img src={this.props.data.logo} />
 				</div>
 				<div className="item-meta">
-					<p classNme="meta-status"> {this.props.data.status} </p>
-					<p classNme="meta-followers"> {this.props.data.followers} </p>
-					<p classNme="meta-created-at"> Joined {this.props.data.created_at} </p>
+					<p className="meta-name"> {this.props.data.display_name} </p>
+					<p className="meta-status"> {this.props.data.status.length < 65 ? this.props.data.status : this.props.data.status.substring(0,60) + "..."} </p>
+					<p className="meta-followers"> {this.props.data.followers} Followers </p>
 				</div>
 			</li>
 		);

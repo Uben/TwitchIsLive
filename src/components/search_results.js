@@ -24,7 +24,7 @@ class SearchResults extends Component {
 		} else {
 			return (
 				<ul id="search-init" className="search-init">
-					<li> Nothing D: </li>
+					<p className="search-intro-message"> Start typing to begin </p>
 				</ul>
 			);
 		}
