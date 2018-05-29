@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const TWITCH_API_CLIENT_ID = 'xchln1xzkrgiuw9yn1bojpe7vom10v';
-let TWITCH_KRAKEN_API_URL = 'https://api.twitch.tv/kraken';
+const TWITCH_KRAKEN_API_URL = 'https://api.twitch.tv/kraken';
 
 export const FORM_INPUT_CHANGE = 'FORM_INPUT_CHANGE';
 export const CHANNEL_SEARCH = 'CHANNEL_SEARCH';
@@ -9,7 +9,6 @@ export const CHANNEL_SEARCH_RESPONSE = 'CHANNEL_SEARCH_RESPONSE';
 export const SET_ACTIVE_CHANNEL = 'SET_ACTIVE_CHANNEL';
 export const GET_CHANNEL_STREAM = 'GET_CHANNEL_STREAM';
 export const SET_CHANNEL_STREAM = 'SET_CHANNEL_STREAM';
-
 
 
 export const channel_search = (form_value) => {
@@ -31,27 +30,24 @@ export const channel_search = (form_value) => {
 }
 
 
-
 export const channel_search_response = (response) => {
 	console.log(`In the 'CHANNEL_SEARCH_RESPONSE' action creator.`);
 
 	return {
 		type: CHANNEL_SEARCH_RESPONSE,
-		payload: response.data,
+		payload: response.data
 	};
 }
 
 
-
 export const form_input_change = (form_value) => {
-	console.log(`In the 'FORM_INPUT_CHANGE' action creator passing in the value: ${form_value}.`);
+	console.log(`In the 'FORM_INPUT_CHANGE' action creator.`);
 
 	return {
 		type: FORM_INPUT_CHANGE,
-		payload: form_value,
+		payload: form_value
 	}
 }
-
 
 
 export const set_active_channel = (channel) => {
@@ -59,10 +55,9 @@ export const set_active_channel = (channel) => {
 
 	return {
 		type: SET_ACTIVE_CHANNEL,
-		payload: channel,
+		payload: channel
 	}
 }
-
 
 
 export const get_channel_stream = (channel_id) => {
@@ -82,20 +77,12 @@ export const get_channel_stream = (channel_id) => {
 }
 
 
-
 export const set_channel_stream = (response) => {
 	console.log(`In the 'SET_CHANNEL_STREAM' action creator.`);
-
-	if (response.data.stream != null) {
-		return {
-			type: SET_CHANNEL_STREAM,
-			payload: response
-		}
-	} else {
-		return {
-			type: SET_CHANNEL_STREAM,
-			payload: null
-		}
+	
+	return {
+		type: SET_CHANNEL_STREAM,
+		payload: (response.data.stream != null) ? response : null // response.data.stream is null when a channel isnt streaming so we set it as null
 	}
 }
 

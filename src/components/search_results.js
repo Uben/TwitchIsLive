@@ -9,6 +9,7 @@ class SearchResults extends Component {
 		super(props);
 	}
 
+
 	render() {
 		if (this.props.channel_search != [] && this.props.channel_search != {} && this.props.channel_search != null){
 			
@@ -22,27 +23,20 @@ class SearchResults extends Component {
 				</ul>
 			);
 		} else {
-			return (
-				<ul id="search-init" className="search-init">
-					<p className="search-intro-message"> Start typing to begin </p>
-				</ul>
-			);
+			return <ul id="search-results" className="search-results"> </ul>;
 		}
 	}
 }
 
 
 
-
-function mapStateToProps(redux_state) {
+const mapStateToProps = () => (redux_state) {
 	return {
 		channel_search: redux_state.channel_search,
 	};
 }
 
-// function mapDispatchToProps(dispatch) {
-// 	bindActionCreators({}, dispatch);
-// }
 
+// const mapDispatchToProps = (dispatch) => { bindActionCreators({}, dispatch); }
 export default connect(mapStateToProps, null)(SearchResults);
 

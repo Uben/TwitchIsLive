@@ -11,10 +11,12 @@ class SearchResultsItem extends Component {
 		this.setActiveClick = this.setActiveClick.bind(this);
 	}
 
+
 	setActiveClick(event) {
 		this.props.set_active_channel(this.props.data);
 		this.props.get_channel_stream(this.props.data._id);
 	}
+
 
 	render() {
 		if (this.props.active_channel) {

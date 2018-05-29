@@ -7,7 +7,12 @@ class TwitchStream extends Component {
 		super(props);
 	}
 
+
 	render() {
+		// - 'active_channel' is null when a 'SearchResultsItem' isn't selected
+		// - 'active_channel_stream' is null when a channel isnt streaming
+
+		// when both 'active_channel' && 'active_channel_stream' are null, show the default
 		if (this.props.active_channel === null && this.props.active_channel_stream === null) {
 			return (
 				<div id="stream-info">
@@ -15,6 +20,8 @@ class TwitchStream extends Component {
 					<p> Search for or select a channel to get started. </p>
 				</div>
 			);
+
+		// when 'active_channel_stream' is null, a channel isnt streaming so 'active_channel_stream' was set as null in the action
 		} else if (this.props.active_channel != null && this.props.active_channel_stream === null) {
 			return (
 				<div id="stream-info">
@@ -35,7 +42,9 @@ class TwitchStream extends Component {
 					</div>
 				</div>
 			);
-		} else { //  if (this.props.active_channel != null && this.props.active_channel_stream != null)
+
+		// when both 'active_channel' && 'active_channel_stream' are NOT null, a channel is streaming so 'active_channel_stream' was set as the response in the action		
+		} else {
 			return (
 				<div id="stream-info">
 					<h1 id="view-title"> Are They Live? </h1>
@@ -59,6 +68,7 @@ class TwitchStream extends Component {
 	}	
 }
 
+
 const mapStateToProps = (redux_state) => {
 	return {
 		active_channel: redux_state.active_channel,
@@ -66,4 +76,9 @@ const mapStateToProps = (redux_state) => {
 	};
 }
 
+
 export default connect(mapStateToProps)(TwitchStream);
+
+
+
+

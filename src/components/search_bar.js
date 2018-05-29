@@ -14,16 +14,22 @@ class SearchBar extends Component {
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 	}
 
-	handleFormSubmit(event) { event.preventDefault(); } // Prevents the default Browser form submission behavior
 
-	handleInputChange(event) {
-		this.props.form_input_change(event.target.value); // update the 'search_value' in the redux state
+	// Prevents the default Browser form submission behavior
+	handleFormSubmit(event) {
+		event.preventDefault();
 	}
+
+
+	// update the 'search_value' in the redux state
+	handleInputChange(event) {
+		this.props.form_input_change(event.target.value);
+	}
+
 
 	handleButtonClick(event){
 		event.preventDefault(); // Prevents the default Browser form submission behavior
 		this.props.channel_search(this.props.search_value); // Dispatch the action 'user_search/FORM_INPUT_CHANGE' w/ value in the input 
-		// this.props.form_input_change(null); // empty 'search_value' in the redux state after submission
 	}
 
 
@@ -32,8 +38,8 @@ class SearchBar extends Component {
 			<form id="search-form" className="search-form" onSubmit={this.handleFormSubmit}>
 				<input
 					type="text"
-					placeholder="Enter a username"
-					value={this.props.search_value != null ? this.props.search_value : ''} // value shouldn't be null
+					placeholder="enter a username"
+					value={this.props.search_value != null ? this.props.search_value : ''} // Value shouldn't be null
 					onChange={this.handleInputChange}
 				/>
 				<button onClick={this.handleButtonClick}> Search </button>
@@ -43,7 +49,7 @@ class SearchBar extends Component {
 }
 
 
-function mapStateToProps(redux_state){
+const mapStateToProps = (redux_state) => {
 	// the key in the object is what will be used to access the redux store state
 	// we assign the associated value as the data in the store we want to assign to the key as its value
 
@@ -52,7 +58,8 @@ function mapStateToProps(redux_state){
 	};
 }
 
-function mapDispatchToProps(dispatch) {
+
+const mapDispatchToProps = (dispatch) =>  {
 	// this takes the action and sets it in the props( e.g 'this.props')
 	// which when called, dispatches an action that changes the state of the application
 	
