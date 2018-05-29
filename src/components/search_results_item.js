@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { set_active_channel } from '../actions/index';
 
 class SearchResultsItem extends Component {
 	constructor(props) {
 		super(props);
+
+		this.setActiveClick = this.setActiveClick.bind(this);
+	}
+
+	setActiveClick(event) {
+		this.props.set_active_channel(this.props.data);
 	}
 
 	render() {
 		return (
-			<li className="search-results-item" key={this.props.key}>
+			<li className="search-results-item" key={this.props.key} onClick={this.setActiveClick}>
 				<div className="item-image-container">
 					<img src={this.props.data.logo} />
 				</div>
@@ -21,4 +31,16 @@ class SearchResultsItem extends Component {
 	}
 }
 
-export default SearchResultsItem;
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ set_active_channel: set_active_channel }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchResultsItem);
+
+
+
+
+
+
+
+
