@@ -30,7 +30,7 @@ class SearchResults extends Component {
 
 
 
-const mapStateToProps = () => (redux_state) {
+const mapStateToProps = (redux_state) => {
 	return {
 		channel_search: redux_state.channel_search,
 	};
