@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { set_active_channel } from '../actions/index';
+import { set_active_channel, get_channel_stream } from '../actions/index';
 
 class SearchResultsItem extends Component {
 	constructor(props) {
@@ -13,6 +13,7 @@ class SearchResultsItem extends Component {
 
 	setActiveClick(event) {
 		this.props.set_active_channel(this.props.data);
+		this.props.get_channel_stream(this.props.data._id);
 	}
 
 	render() {
@@ -46,17 +47,17 @@ class SearchResultsItem extends Component {
 	}
 }
 
-// && (this.props.active_channel._id === this.props.data._id)
 
 
 const mapStateToProps = (redux_state) => {
 	return {
-		active_channel: redux_state.active_channel,
+		active_channel: redux_state.active_channel
 	};
 }
 
+
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ set_active_channel: set_active_channel }, dispatch);
+	return bindActionCreators({ set_active_channel: set_active_channel, get_channel_stream: get_channel_stream }, dispatch);
 }
 
 
