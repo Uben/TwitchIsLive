@@ -9,4 +9,32 @@
         <div id="app" class="container"></div>
     </body>
     <script src="/bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+	<script type="text/javascript">
+
+		window.addEventListener('onload', delayedBgCreator)
+		window.addEventListener('resize', window.setTimeout(delayedBgCreator, 500));
+
+		function delayedBgCreator() {
+			var bgTarget = document.body;
+
+			console.log(window.innerWidth);
+			console.log(window.innerHeight);
+
+			var pattern = Trianglify({
+  				cell_size: 65,
+				variance: 0.85,
+				x_colors: ['#0a0610', '#1e1331', '#322052', '#462d72', '#503483', '#5a3a93', '#6441a4'],
+  				y_colors: 'match_x',
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+
+			bgTarget.appendChild(pattern.canvas())
+		}
+	</script>
 </html>
+
+
+<!-- '#6441a4', '#5a3a93', '#503483', '#462d72', '#322052', '#1e1331', '#0a0610' -->
+<!-- ['#0a0610', '#1e1331', '#322052', '#462d72', '#503483', '#5a3a93', '#6441a4'] -->
